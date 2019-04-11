@@ -9,7 +9,6 @@ class NewQuestion extends Component {
   state = {
     optionOneText: '',
     optionTwoText: '',
-    toNewPoll: false,
   }
 
   handleChange = (e, option) => {
