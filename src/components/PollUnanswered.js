@@ -13,12 +13,14 @@ class PollUnanswered extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     const { dispatch, questionId, authedUser } = this.props
-    dispatch(handleSaveVote(questionId, this.state.selectedOption, authedUser))
+
+    if (this.state.selectedOption) {
+      dispatch(handleSaveVote(questionId, this.state.selectedOption, authedUser))
+    }
   }
 
   handleChange = (e) => {
     const selectedOption = e.target.value;
-    console.log(selectedOption)
     this.setState(() => ({
       selectedOption: selectedOption
     }))
