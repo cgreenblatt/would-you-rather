@@ -14,7 +14,7 @@ class QuestionSummary extends Component {
         headerText={`${author.name} asks`}
         questionId={questionId}>
         <div className="question-summary-subsec">
-          <h3 className="question-summary-subheader">Would you rather</h3>
+          <h3>Would you rather</h3>
           <div className="question-summary-option">...{question.optionOne.text}...</div>
           <Link to={`/poll/${question.id}`} className="question-summary-btn">View Poll</Link>
         </div>

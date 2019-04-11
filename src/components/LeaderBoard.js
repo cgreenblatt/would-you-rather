@@ -24,7 +24,6 @@ class LeaderBoard extends Component {
       }
     }
 
-
     return(
       <div className="min-max-width justify-self-center">
         {sortedUsers.map((user) => (

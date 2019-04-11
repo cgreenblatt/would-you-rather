@@ -49,7 +49,7 @@ class SignIn extends Component {
       <div className="gray-border min-max-width justify-self-center">
         <div className="grid-header">
           <h2 className="align-center">Welcome to the Would You Rather App!</h2>
-          <h4 className="font-medium align-center">Please sign in to continue</h4>
+          <h4 className="font-medium align-center gray">Please sign in to continue</h4>
         </div>
         <div className="icons">
           <img className="icon icon-react" src={reactLogo} alt="react logo"/>

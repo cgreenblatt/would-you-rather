@@ -29,7 +29,6 @@ export default function users (state = {}, action) {
           }
         }
         case ADD_QUESTION_TO_USER :
-          debugger
           const question = action.question
           return {
           ...state,
