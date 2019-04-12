@@ -53,4 +53,6 @@ on the Submit button. To view all users' scores, click on the Leader Board tab.
 
 Pull requests will not be accepted.
 
+## Details
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
