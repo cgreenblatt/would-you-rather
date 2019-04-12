@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { handleInitialData } from '../actions/shared';
 import SignIn from './SignIn';
 import Questions from './Questions';
@@ -24,14 +24,15 @@ class App extends Component {
     return (
       <Router>
           <div className='App'>
-            <AuthedUser />
-            <Route path='/' exact component={SignIn} />
-            <Route path='/polls' exact component={Questions} />
-            <Route path='/polls/:status' component={Questions} />
-            <Route path='/add' component={NewQuestion} />
-            <Route path='/leaderboard' component={LeaderBoard} />
-            <Route path='/poll/:questionId' exact component={Poll} />
-            <Route path='/poll' exact component={Questions} />
+          <AuthedUser />
+            <Switch>
+              <Route path='/' exact component={SignIn} />
+              <Route path='/polls/:status' exact component={Questions} />
+              <Route path='/add' exact component={NewQuestion} />
+              <Route path='/leaderboard' exact component={LeaderBoard} />
+              <Route path='/poll/:questionId' exact component={Poll} />
+              <Route component={SignIn} />
+            </Switch>
           </div>
       </Router>
     );
