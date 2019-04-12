@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { connect } from 'react-redux';
 
 class Listbox extends Component {
 
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
@@ -16,20 +16,20 @@ class Listbox extends Component {
       setActiveUserId,
       listboxCollapsed,
       toggleListbox,
-    } = this.props
+    } = this.props;
 
-    const userIds = Object.keys(users)
+    const userIds = Object.keys(users);
 
     return (
-      <div className="listbox-container">
+      <div className='listbox-container'>
         <div
           onClick={toggleListbox}
-          className="listbox-button">
+          className='listbox-button'>
             {activeUserId ?
              users[activeUserId].name :
              'Select User'
             }
-          <span className="listbox-chevron">
+          <span className='listbox-chevron'>
             <FontAwesomeIcon icon={
               listboxCollapsed ?
               ['fas', 'chevron-down'] :
@@ -38,28 +38,26 @@ class Listbox extends Component {
           </span>
         </div>
         {!listboxCollapsed &&
-        <ul  className="listbox-list gray-border">
+        <ul  className='listbox-list gray-border'>
           {userIds.map((id) => (
             <li
               key={id}
               onPointerEnter={() => {setActiveUserId(id)}}
               onClick={toggleListbox}
-              className="listbox-li">
-              <img src={users[id].avatarURL} alt={`${users[id].name}'s' avatar`} className="avatar"/>
-              <span className="listbox-li-name">{users[id].name}</span>
+              className='listbox-li'>
+              <img src={users[id].avatarURL} alt={`${users[id].name}'s' avatar`} className='avatar'/>
+              <span className='listbox-li-name'>{users[id].name}</span>
             </li>
           ))}
         </ul>}
       </div>
-  )
+  );
 }
 
 }
 
 function mapStateToProps({ users }) {
-  return {
-    users
-  }
+  return { users };
 }
 
-export default connect(mapStateToProps)(Listbox)
+export default connect(mapStateToProps)(Listbox);

@@ -1,4 +1,4 @@
-import { RECEIVE_USERS, TOGGLE_VOTE_USER, ADD_QUESTION_TO_USER } from '../actions/users'
+import { RECEIVE_USERS, TOGGLE_VOTE_USER, ADD_QUESTION_TO_USER } from '../actions/users';
 
 export default function users (state = {}, action) {
 
@@ -7,15 +7,14 @@ export default function users (state = {}, action) {
       return {
         ...state,
         ...action.users
-      }
+      };
     case TOGGLE_VOTE_USER :
       const {authedUser, qid, answer, addVote} = action
       // used if removing vote
       // make copy of answers object
       let newAnswers = { ...state[authedUser].answers }
       // remove the specified question from copy
-      delete newAnswers[qid]
-
+      delete newAnswers[qid];
       return {
           ...state,
           [authedUser]: {
@@ -27,7 +26,7 @@ export default function users (state = {}, action) {
               }
             : newAnswers
           }
-        }
+        };
         case ADD_QUESTION_TO_USER :
           const question = action.question
           return {
@@ -37,8 +36,8 @@ export default function users (state = {}, action) {
             questions:
               state[question.author].questions.concat(question.id)
           }
-        }
+        };
     default :
-      return state
+      return state;
   }
 }

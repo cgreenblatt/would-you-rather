@@ -18,6 +18,7 @@
   width: auto;
   height: 110px;
 }
+
 .icon-redux {
   justify-self: left;
   padding-left: 27px;
@@ -26,10 +27,10 @@
 .icon-react {
   justify-self: right;
 }
+
 .plus-sign {
   font-weight: bold;
   font-size: 4rem;
-  color: #a09d9d;
 }
 
 .listbox-container {
@@ -99,11 +100,6 @@
     width: 100%;
 }
 
-.home {
-  height: 90vh;
-  width: 100vw;
-}
-
 .authed-user {
   border-bottom: 3px solid teal;
   padding:  5px;
@@ -170,6 +166,7 @@
 .active {
   color: white;
   text-decoration: underline;
+  font-weight: bold;
 }
 
 .tab {
@@ -185,10 +182,6 @@
 
 .tab-content {
   position: relative;
-}
-
-.navbar-item:active .tab {
-  background-color: blue;
 }
 
 .filter-questions-grid {
@@ -210,7 +203,7 @@
 }
 
 .active-filter {
-  color: #008080;
+  color: teal;
   background-color: white;
   text-decoration: underline;
 }
@@ -248,7 +241,6 @@
 }
 
 .question-summary-option {
-  color: gray;
   padding: 15px 0;
 }
 
@@ -263,8 +255,8 @@
 .question-summary-btn {
   padding: 10px;
   border-radius: 5px;
-  border: solid 2px #008080;
-  color: #008080;
+  border: solid 2px teal;
+  color: teal;
   font-size: 1rem;
   align-self: end;
   text-align: center;
@@ -294,10 +286,10 @@
 }
 
 .yes-vote {
-  color: #008080;
+  color: teal;
   background-color: #bce2e2;
   position: relative;
-  border-color: #008080;
+  border-color: teal;
 }
 
 .checkmark-container {
@@ -348,7 +340,7 @@
 }
 
 .user-score-container {
-  padding: 10px 0;
+  padding: 20px 0;
   position: relative;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
@@ -393,7 +385,6 @@
   align-self: end;
   display: grid;
   grid-template-columns: 4fr 1fr;
-  padding-top: 5px;
 }
 
 .score-row:first-of-type {
@@ -412,8 +403,7 @@
   border-left: solid 2px #d9d9d9;
   border-right: solid 2px #d9d9d9;
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-columns: 1;
+  grid-template-rows: 1.3fr 1fr 1fr;
 }
 
 .score {
@@ -455,6 +445,7 @@
   align-self: center;
   justify-self: center;
   color: white;
+  font-weight: bold;
 }
 
 /***************** New Question ***********/
@@ -549,7 +540,7 @@
 .min-max-width {
   width: 90%;
   min-width: 360px;
-  max-width: 650px;
+  max-width: 600px;
   margin: 20px auto;
 }
 
@@ -570,6 +561,14 @@
   color: gray;
 }
 
+.gray-dark {
+  color: #4a4949;
+}
+
 h2 {
   padding: 10px;
+}
+
+input[type="radio"] {
+  cursor: pointer;
 }

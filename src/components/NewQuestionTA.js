@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component, Fragment } from 'react';
 
 class NewQuestionTA extends Component {
 
@@ -13,22 +13,22 @@ class NewQuestionTA extends Component {
   }
 
   changeHandler = (e) => {
-    this.props.handleChange(e, this.props.name)
+    this.props.handleChange(e, this.props.name);
   }
 
   render() {
 
-    const { placeholder, text, name } = this.props
-    const maxLength = 100
-    const charsLeft = maxLength - text.length
+    const { placeholder, text, name } = this.props;
+    const maxLength = 100;
+    const charsLeft = maxLength - text.length;
 
     return (
       <Fragment>
         <textarea
           ref = {this.textInput}
           onChange={this.changeHandler}
-          className="new-question-textarea"
-          rows="1"
+          className='new-question-textarea'
+          rows='1'
           value={text}
           maxLength={maxLength}
           placeholder={placeholder}
@@ -39,8 +39,8 @@ class NewQuestionTA extends Component {
           </div>
         )}
       </Fragment>
-    )
+    );
   }
 }
 
-export default NewQuestionTA
+export default NewQuestionTA;

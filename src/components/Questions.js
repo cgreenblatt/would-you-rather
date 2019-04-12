@@ -1,46 +1,54 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { NavLink, Redirect } from 'react-router-dom'
-import QuestionSummary from './QuestionSummary'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { NavLink, Redirect } from 'react-router-dom';
+import QuestionSummary from './QuestionSummary';
 
 
 class Questions extends Component {
 
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
-    const { authedUser, questions, users, status } = this.props
+    const { authedUser, questions, users, status } = this.props;
 
     if (!authedUser) {
       return <Redirect to='/' />
     }
 
-    const allIds = Object.keys(questions)
+    // get ids of all questions
+    const allIds = Object.keys(questions);
+    // get all answer objects for this user
+    //const answers = users[authedUser].answers;
+    // get ids of all answered questions
 
-    const answers = users[authedUser].answers
-    const answeredQuestionIds = Object.keys(answers)
-    const unansweredQuestionIds = allIds.filter(id => !answeredQuestionIds.includes(id))
-    const questionIds = status === 'unanswered' ? unansweredQuestionIds : answeredQuestionIds
+    const answeredQuestionIds = Object.keys(users[authedUser].answers);
+    // get ids of all unanswered questions
+    const unansweredQuestionIds = allIds.filter(id => !answeredQuestionIds.includes(id));
+
+    const questionIds = status === 'unanswered' ? unansweredQuestionIds : answeredQuestionIds;
+
+    // create new array with new {id, timestamp} objects
     let sortedQuestions = questionIds.map(id => {
       return {
         id,
         timestamp: questions[id].timestamp,
       }
-    })
-    sortedQuestions.sort((q1, q2) => q2.timestamp - q1.timestamp)
+    });
+    // sort the new array
+    sortedQuestions.sort((q1, q2) => q2.timestamp - q1.timestamp);
 
     return(
       <div>
-        <div className="filter-questions-grid">
-          <NavLink to="/polls/unanswered" className="filter-question" activeClassName='active-filter'>Unanswered Questions</NavLink>
-          <NavLink to="/polls/answered" className="filter-question" activeClassName='active-filter'>Answered Questions</NavLink>
+        <div className='filter-questions-grid'>
+          <NavLink to='/polls/unanswered' className='filter-question' activeClassName='active-filter'>Unanswered Questions</NavLink>
+          <NavLink to='/polls/answered' className='filter-question' activeClassName='active-filter'>Answered Questions</NavLink>
         </div>
 
-        <ul className="question-list">
+        <ul className='question-list'>
           {sortedQuestions.map(question => (
-            <li key={question.id} className="question-list-item">
+            <li key={question.id} className='question-list-item'>
               <QuestionSummary questionId={question.id} />
             </li>
           ))}
@@ -52,7 +60,7 @@ class Questions extends Component {
 
 function mapStateToProps({ authedUser, questions, users }, props) {
   // make unanswered questions the default if the status is not specified
-  const status = props.match.params.status? props.match.params.status : "unanswered"
+  const status = props.match.params.status? props.match.params.status : 'unanswered'
   return {
     status,
     questions,
@@ -61,4 +69,4 @@ function mapStateToProps({ authedUser, questions, users }, props) {
   }
 }
 
-export default connect(mapStateToProps)(Questions)
+export default connect(mapStateToProps)(Questions);

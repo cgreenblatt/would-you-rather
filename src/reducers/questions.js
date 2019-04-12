@@ -1,4 +1,4 @@
-import { RECEIVE_QUESTIONS, ADD_QUESTION, TOGGLE_VOTE_QUESTION } from '../actions/questions'
+import { RECEIVE_QUESTIONS, ADD_QUESTION, TOGGLE_VOTE_QUESTION } from '../actions/questions';
 
 export default function questions (state = {}, action) {
   switch(action.type) {
@@ -6,14 +6,14 @@ export default function questions (state = {}, action) {
       return {
         ...state,
         ...action.questions
-      }
+      };
       case ADD_QUESTION :
         return {
           ...state,
           [action.question.id]: action.question
-        }
+        };
       case TOGGLE_VOTE_QUESTION:
-        const {authedUser, qid, answer, addVote} = action
+        const {authedUser, qid, answer, addVote} = action;
         return {
           ...state,
           [qid]: {
@@ -25,8 +25,8 @@ export default function questions (state = {}, action) {
                 : state[qid][answer].votes.filter(id => id !== action.id)
             }
           }
-        }
+        };
       default :
-        return state
+        return state;
   }
 }
