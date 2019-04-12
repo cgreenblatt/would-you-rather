@@ -11,7 +11,6 @@ class AuthedUser extends Component {
   };
 
   render() {
-
     const { authedUser } = this.props;
 
     if (!authedUser) {
@@ -31,7 +30,6 @@ class AuthedUser extends Component {
       </div>
     );
   }
-
 }
 
 function mapStateToProps({ authedUser, users }) {

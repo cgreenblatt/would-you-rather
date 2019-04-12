@@ -10,7 +10,6 @@ class PollUnanswered extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     const { dispatch, questionId, authedUser } = this.props
-
     if (this.state.selectedOption) {
       dispatch(handleSaveVote(questionId, this.state.selectedOption, authedUser));
     }
@@ -22,11 +21,13 @@ class PollUnanswered extends Component {
   };
 
   render() {
+
     const { question, authedUser } = this.props;
 
     if (!authedUser) {
       return <Redirect to='/' />
     }
+
     if (!question) {
       return <div>Invalid poll id</div>
     }

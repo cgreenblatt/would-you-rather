@@ -8,6 +8,7 @@ import PollContainer from './PollContainer';
 class Poll extends Component {
 
   render() {
+    
     const { questionId, question, author, authedUser } = this.props;
 
     if (!authedUser) {
@@ -53,7 +54,6 @@ class Poll extends Component {
 }
 
 function mapStateToProps({ questions, users, authedUser }, props ) {
-
   const questionId = props.match.params.questionId;
   const question = questions[questionId];
   return {

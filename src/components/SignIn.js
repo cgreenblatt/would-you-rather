@@ -36,6 +36,7 @@ class SignIn extends Component {
   }
 
   render() {
+
     const { authedUser } = this.props;
 
     // already signed in so go to polls

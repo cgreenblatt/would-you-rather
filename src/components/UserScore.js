@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
 class UserScore extends Component {
 
   render() {
+
     const { user, rank } = this.props;
-    if (!user) return null;
 
     let classList = 'trophy';
     switch (rank) {

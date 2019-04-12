@@ -3,26 +3,19 @@ import { connect } from 'react-redux';
 import { NavLink, Redirect } from 'react-router-dom';
 import QuestionSummary from './QuestionSummary';
 
-
 class Questions extends Component {
 
   render() {
+
     const { authedUser, questions, users, status } = this.props;
 
     if (!authedUser) {
       return <Redirect to='/' />
     }
 
-    // get ids of all questions
     const allIds = Object.keys(questions);
-    // get all answer objects for this user
-    //const answers = users[authedUser].answers;
-    // get ids of all answered questions
-
     const answeredQuestionIds = Object.keys(users[authedUser].answers);
-    // get ids of all unanswered questions
     const unansweredQuestionIds = allIds.filter(id => !answeredQuestionIds.includes(id));
-
     const questionIds = status === 'unanswered' ? unansweredQuestionIds : answeredQuestionIds;
 
     // create new array with new {id, timestamp} objects
@@ -41,7 +34,6 @@ class Questions extends Component {
           <NavLink to='/polls/unanswered' className='filter-question' activeClassName='active-filter'>Unanswered Questions</NavLink>
           <NavLink to='/polls/answered' className='filter-question' activeClassName='active-filter'>Answered Questions</NavLink>
         </div>
-
         <ul className='question-list'>
           {sortedQuestions.map(question => (
             <li key={question.id} className='question-list-item'>

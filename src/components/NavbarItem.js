@@ -15,6 +15,7 @@ class NavbarItem extends Component {
       liClassList += ' border-bottom-color'
       nlClassList += ' active'
     }
+
     return (
       <li className={liClassList}>
         <NavLink to={to} exact className={nlClassList} activeClassName='active'>
@@ -23,7 +24,6 @@ class NavbarItem extends Component {
       </li>
     )
   }
-
 }
 
 export default withRouter(NavbarItem)

@@ -7,19 +7,19 @@ class PollContainer extends Component {
 
     const { children, headerText, author } = this.props;
 
-       return (
-         <div className='gray-border min-max-width justify-self-center'>
-           <h2 className='grid-header font-medium'>
-             {headerText}
-           </h2>
-           <div className='two-col-grid'>
-             <img
-                src={author.avatarURL}
-                alt={`${author.name}'s avatar`}
-                className='avatar avatar-grid'
-              />
-              {children}
-           </div>
+    return (
+       <div className='gray-border min-max-width justify-self-center'>
+         <h2 className='grid-header font-medium'>
+           {headerText}
+         </h2>
+         <div className='two-col-grid'>
+           <img
+              src={author.avatarURL}
+              alt={`${author.name}'s avatar`}
+              className='avatar avatar-grid'
+            />
+            {children}
+          </div>
         </div>
       );
     }

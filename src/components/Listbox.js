@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 class Listbox extends Component {
 
   render() {
+
     const {
       users,
       activeUserId,
@@ -46,9 +47,8 @@ class Listbox extends Component {
           ))}
         </ul>}
       </div>
-  );
-}
-
+    );
+  }
 }
 
 function mapStateToProps({ users }) {

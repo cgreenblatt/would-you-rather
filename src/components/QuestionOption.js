@@ -7,11 +7,9 @@ class QuestionOption extends Component {
   render() {
 
     const { question, option, authedUserId } = this.props;
-
     const thisOptionVotes = question[option].votes.length;
     const totalVotes = question.optionOne.votes.length +
       question.optionTwo.votes.length;
-
     const yesVote = question[option].votes.includes(authedUserId);
     let classList = 'question-option';
     if (yesVote) classList += '  yes-vote';

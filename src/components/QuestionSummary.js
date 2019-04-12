@@ -6,7 +6,9 @@ import PollContainer from './PollContainer';
 class QuestionSummary extends Component {
 
   render() {
+
     const { questionId, question, author } = this.props;
+    
     return (
       <PollContainer
         headerText={`${author.name} asks`}
