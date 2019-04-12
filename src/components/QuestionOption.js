@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { handleSaveVote } from '../actions/shared';
 
 class QuestionOption extends Component {
 

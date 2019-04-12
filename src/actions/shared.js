@@ -1,4 +1,3 @@
-import { showLoading, hideLoading } from 'react-redux-loading';
 import { getInitialData, saveQuestionAnswer, saveQuestion } from '../utils/api';
 import { receiveUsers, toggleVoteUser, addQuestionToUser } from '../actions/users';
 import { receiveQuestions, toggleVoteQuestion, addQuestionToQuestions } from '../actions/questions';

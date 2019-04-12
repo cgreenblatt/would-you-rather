@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect, Link, withRouter } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { handleAddQuestion } from '../actions/shared';
 import NewQuestionTA from './NewQuestionTA';
 

@@ -18,7 +18,7 @@ class NewQuestionTA extends Component {
 
   render() {
 
-    const { placeholder, text, name } = this.props;
+    const { placeholder, text} = this.props;
     const maxLength = 100;
     const charsLeft = maxLength - text.length;
 

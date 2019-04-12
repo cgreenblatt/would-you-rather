@@ -5,7 +5,7 @@ class PollContainer extends Component {
 
   render() {
 
-    const { children, headerText, questionId, author } = this.props;
+    const { children, headerText, author } = this.props;
 
        return (
          <div className='gray-border min-max-width justify-self-center'>
@@ -28,7 +28,6 @@ class PollContainer extends Component {
 function mapStateToProps({ questions, users }, { questionId }) {
   const question = questions[questionId];
   return {
-    questionId,
     question,
     author: users[question.author],
   };

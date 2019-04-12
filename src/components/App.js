@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { handleInitialData } from '../actions/shared';
@@ -21,7 +21,6 @@ class App extends Component {
   }
 
   render() {
-    const { authedUser } = this.props;
     return (
       <Router>
           <div className='App'>
@@ -39,9 +38,4 @@ class App extends Component {
   }
 }
 
-
-function mapStateToProps({ authedUser }) {
-  return { authedUser };
-}
-
-export default connect(mapStateToProps)(App);
+export default connect()(App)

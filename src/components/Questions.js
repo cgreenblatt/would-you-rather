@@ -6,10 +6,6 @@ import QuestionSummary from './QuestionSummary';
 
 class Questions extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { authedUser, questions, users, status } = this.props;
 

@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import NavbarItem from './NavbarItem';
 
 class Navbar extends Component {
 
   render() {
-    const { authedUser } = this.props;
 
     return (
       <nav className='navbar'>
@@ -20,8 +17,4 @@ class Navbar extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, users }) {
-  return { authedUser: users[authedUser] };
-}
-
-export default connect(mapStateToProps)(Navbar);
+export default Navbar;

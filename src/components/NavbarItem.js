@@ -6,10 +6,6 @@ import { NavLink, withRouter } from 'react-router-dom'
 https://stackoverflow.com/questions/42253277/react-router-v4-how-to-get-current-route */
 class NavbarItem extends Component {
 
-  constructor(props) {
-    super(props)
-  }
-
   render() {
 
     let liClassList = 'navbar-item'

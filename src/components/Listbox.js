@@ -4,12 +4,7 @@ import { connect } from 'react-redux';
 
 class Listbox extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-
     const {
       users,
       activeUserId,
