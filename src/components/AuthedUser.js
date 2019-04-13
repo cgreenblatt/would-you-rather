@@ -7,15 +7,11 @@ class AuthedUser extends Component {
 
   handleClick = (e) => {
     e.preventDefault();
-    this.props.dispatch(setAuthedUser(null));
+    this.props.logOutUser();
   };
 
   render() {
     const { authedUser } = this.props;
-
-    if (!authedUser) {
-      return null;
-    }
 
     return (
       <div className='authed-user'>
@@ -36,4 +32,8 @@ function mapStateToProps({ authedUser, users }) {
   return { authedUser: users[authedUser] };
 }
 
-export default connect(mapStateToProps)(AuthedUser);
+function mapDispatchToProps(dispatch) {
+  return { logOutUser: () => {dispatch(setAuthedUser(null));} }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthedUser);
