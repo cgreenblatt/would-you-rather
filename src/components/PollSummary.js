@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PollContainer from './PollContainer';
 
-function QuestionSummary(props) {
+function PollSummary(props) {
 
   const { questionId, question, author } = props;
 
@@ -32,4 +32,4 @@ function mapStateToProps({ questions, users }, { questionId }) {
   }
 }
 
-export default connect(mapStateToProps)(QuestionSummary);
+export default connect(mapStateToProps)(PollSummary);

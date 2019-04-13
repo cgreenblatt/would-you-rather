@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function QuestionOption(props) {
+function Option(props) {
 
   const { question, option, authedUserId } = props;
   const thisOptionVotes = question[option].votes.length;
@@ -41,4 +41,4 @@ function mapStateToProps({ authedUser }) {
   return { authedUserId: authedUser };
 }
 
-export default connect(mapStateToProps)(QuestionOption);
+export default connect(mapStateToProps)(Option);

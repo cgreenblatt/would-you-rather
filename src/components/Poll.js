@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import SignIn from './SignIn';
-import QuestionOption from './QuestionOption';
+import Option from './Option';
 import PollUnanswered from './PollUnanswered';
 import PollContainer from './PollContainer';
 
@@ -38,8 +38,8 @@ function Poll(props) {
     >
       <div className='question-details'>
         <h3 className='font-large'>Results:</h3>
-        <QuestionOption question={question} option='optionOne'/>
-        <QuestionOption question={question} option='optionTwo' />
+        <Option question={question} option='optionOne'/>
+        <Option question={question} option='optionTwo' />
       </div>
     </PollContainer>
   );

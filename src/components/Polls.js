@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink, Redirect } from 'react-router-dom';
-import QuestionSummary from './QuestionSummary';
+import PollSummary from './PollSummary';
 
-function Questions(props) {
+function Polls(props) {
 
   const { authedUser, questions, users, status } = props;
 
@@ -40,7 +40,7 @@ function Questions(props) {
       <ul className='question-list'>
         {sortedQuestions.map(question => (
           <li key={question.id} className='question-list-item'>
-            <QuestionSummary questionId={question.id} />
+            <PollSummary questionId={question.id} />
           </li>
         ))}
       </ul>
@@ -59,4 +59,4 @@ function mapStateToProps({ authedUser, questions, users }, props) {
   }
 }
 
-export default connect(mapStateToProps)(Questions);
+export default connect(mapStateToProps)(Polls);

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { handleAddQuestion } from '../actions/shared';
-import NewQuestionTA from './NewQuestionTA';
+import OptionTA from './OptionTA';
 
-class NewQuestion extends Component {
+class NewPoll extends Component {
 
   state = {
     optionOneText: '',
@@ -45,14 +45,14 @@ class NewQuestion extends Component {
             <div>Complete the question:</div>
             <h3 className='new-question-subheader1'>Would you rather ...</h3>
             <form onSubmit={this.handleSubmit}>
-              <NewQuestionTA
+              <OptionTA
                 placeholder='Enter Option One Text Here'
                 name='optionOneText'
                 handleChange={this.handleChange}
                 text={this.state.optionOneText}
               />
               <h3 className='new-question-subheader2'>OR</h3>
-              <NewQuestionTA
+              <OptionTA
                 placeholder='Enter Option Two Text Here'
                 name='optionTwoText'
                 handleChange={this.handleChange}
@@ -75,4 +75,4 @@ function mapStateToProps({authedUser}) {
   return { authedUser };
 }
 
-export default connect(mapStateToProps)(NewQuestion);
+export default connect(mapStateToProps)(NewPoll);

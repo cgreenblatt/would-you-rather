@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-class NewQuestionTA extends Component {
+class OptionTA extends Component {
 
   constructor(props) {
     super(props)
@@ -43,4 +43,4 @@ class NewQuestionTA extends Component {
   }
 }
 
-export default NewQuestionTA;
+export default OptionTA;
