@@ -10,7 +10,12 @@ class LeaderBoard extends Component {
     const { users, authedUser } = this.props;
 
     if (!authedUser) {
-      return <Redirect to='/' />;
+       return <Redirect
+        to={{
+          pathname: "/",
+          state: { referrer: `/leaderboard`}
+        }}
+      />
     }
 
     //sort all users by score

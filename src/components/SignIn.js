@@ -39,9 +39,14 @@ class SignIn extends Component {
 
     const { authedUser } = this.props;
 
-    // already signed in so go to polls
     if (authedUser) {
-      return <Redirect to='/polls/unanswered' />
+        if (this.props.location.state) {
+          // redirect to referrer
+          return <Redirect to={this.props.location.state.referrer} />
+        } else {
+          // not referred, redirect to home
+          return <Redirect to='/polls/unanswered' />
+        }
     }
 
     return (

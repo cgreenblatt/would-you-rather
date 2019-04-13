@@ -43,7 +43,7 @@ export function handleSaveVote(qid, answer, authedUser) {
       dispatch(toggleVoteQuestion({authedUser, qid, answer, addVote: false}));
       // request to undo updated user slice of state
       dispatch(toggleVoteUser({authedUser, qid, answer, addVote: false}));
-      alert('The was an error recording your vote. Try again.')
+      alert('There was an error recording your vote. Try again.')
     });
   };
 }

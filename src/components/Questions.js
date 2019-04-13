@@ -10,7 +10,12 @@ class Questions extends Component {
     const { authedUser, questions, users, status } = this.props;
 
     if (!authedUser) {
-      return <Redirect to='/' />
+       return <Redirect
+        to={{
+          pathname: "/",
+          state: { referrer: `/polls/${status}`}
+        }}
+      />
     }
 
     const allIds = Object.keys(questions);

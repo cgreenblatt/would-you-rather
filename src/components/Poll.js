@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import SignIn from './SignIn';
 import QuestionOption from './QuestionOption';
 import PollUnanswered from './PollUnanswered';
@@ -8,13 +9,16 @@ import PollContainer from './PollContainer';
 class Poll extends Component {
 
   render() {
-    
+
     const { questionId, question, author, authedUser } = this.props;
 
     if (!authedUser) {
-      return (
-        <SignIn />
-      );
+       return <Redirect
+        to={{
+          pathname: "/",
+          state: { referrer: `/poll/${questionId}`}
+        }}
+      />
     }
 
     if (!question) {

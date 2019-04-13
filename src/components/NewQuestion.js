@@ -30,7 +30,12 @@ class NewQuestion extends Component {
 
     const { authedUser } = this.props;
     if (!authedUser) {
-      return <Redirect to='/' />
+       return <Redirect
+        to={{
+          pathname: "/",
+          state: { referrer: `/add`}
+        }}
+      />
     }
 
     return (
@@ -57,7 +62,8 @@ class NewQuestion extends Component {
                 type='submit'
                 className='new-question-btn'
               >
-                Submit</button>
+                Submit
+              </button>
             </form>
         </div>
       </div>

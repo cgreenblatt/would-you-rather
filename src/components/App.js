@@ -8,6 +8,7 @@ import Poll from './Poll';
 import LeaderBoard from './LeaderBoard';
 import NewQuestion from './NewQuestion';
 import AuthedUser from './AuthedUser';
+import PageNotFound from './PageNotFound'
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import '../App.css';
@@ -31,7 +32,7 @@ class App extends Component {
               <Route path='/add' exact component={NewQuestion} />
               <Route path='/leaderboard' exact component={LeaderBoard} />
               <Route path='/poll/:questionId' exact component={Poll} />
-              <Route component={SignIn} />
+              <Route component={PageNotFound} />
             </Switch>
           </div>
       </Router>
