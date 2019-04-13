@@ -9,27 +9,21 @@ import reactLogo from '../icons/reactLogo.svg';
 
 class SignIn extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeUserId: undefined,
-      listboxCollapsed: true,
-    };
-    this.setActiveUserId = this.setActiveUserId.bind(this);
-    this.signIn = this.signIn.bind(this);
-    this.toggleListbox = this.toggleListbox.bind(this);
-  }
+  state = {
+    activeUserId: undefined,
+    listboxCollapsed: true,
+  };
 
-  setActiveUserId(id) {
+  setActiveUserId = (id) => {
       this.setState({ activeUserId: id,});
   }
 
-  signIn() {
+  signIn = () => {
     if (this.state.activeUserId)
       this.props.dispatch(setAuthedUser(this.state.activeUserId));
   }
 
-  toggleListbox() {
+  toggleListbox = () =>  {
     this.setState((state) => {
       return { listboxCollapsed: !state.listboxCollapsed };
     })

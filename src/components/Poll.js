@@ -6,55 +6,52 @@ import QuestionOption from './QuestionOption';
 import PollUnanswered from './PollUnanswered';
 import PollContainer from './PollContainer';
 
-class Poll extends Component {
+const Poll = (props) => {
 
-  render() {
+  const { questionId, question, author, authedUser } = props;
 
-    const { questionId, question, author, authedUser } = this.props;
+  if (!authedUser) {
+     return <Redirect
+      to={{
+        pathname: "/",
+        state: { referrer: `/poll/${questionId}`}
+      }}
+    />
+  }
 
-    if (!authedUser) {
-       return <Redirect
-        to={{
-          pathname: "/",
-          state: { referrer: `/poll/${questionId}`}
-        }}
-      />
-    }
-
-    if (!question) {
-      return (
-        <div className='min-max-width'>
-          <h2>Oops!</h2>
-          <h4>We can't find that poll.</h4>
-          <h4>Could you check your poll id and try again?</h4>
-        </div>
-      );
-    }
-
-    const answered = Object.keys(authedUser.answers).includes(questionId);
-
-    if (answered) return (
-      <PollContainer
-        headerText={`Asked by ${author.name}`}
-        questionId={questionId}
-      >
-        <div className='question-details'>
-          <h3 className='font-large'>Results:</h3>
-          <QuestionOption question={question} option='optionOne'/>
-          <QuestionOption question={question} option='optionTwo' />
-        </div>
-      </PollContainer>
-    );
-
-    // poll not yet ansered
+  if (!question) {
     return (
-      <PollContainer
-        headerText={`${author.name} asks:`}
-        questionId={questionId}>
-        <PollUnanswered questionId={questionId}/>
-      </PollContainer>
+      <div className='min-max-width'>
+        <h2>Oops!</h2>
+        <h4>We can't find that poll.</h4>
+        <h4>Could you check your poll id and try again?</h4>
+      </div>
     );
   }
+
+  const answered = Object.keys(authedUser.answers).includes(questionId);
+
+  if (answered) return (
+    <PollContainer
+      headerText={`Asked by ${author.name}`}
+      questionId={questionId}
+    >
+      <div className='question-details'>
+        <h3 className='font-large'>Results:</h3>
+        <QuestionOption question={question} option='optionOne'/>
+        <QuestionOption question={question} option='optionTwo' />
+      </div>
+    </PollContainer>
+  );
+
+  // poll not yet ansered
+  return (
+    <PollContainer
+      headerText={`${author.name} asks:`}
+      questionId={questionId}>
+      <PollUnanswered questionId={questionId}/>
+    </PollContainer>
+  );
 }
 
 function mapStateToProps({ questions, users, authedUser }, props ) {
