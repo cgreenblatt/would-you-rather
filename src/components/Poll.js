@@ -6,7 +6,7 @@ import QuestionOption from './QuestionOption';
 import PollUnanswered from './PollUnanswered';
 import PollContainer from './PollContainer';
 
-const Poll = (props) => {
+function Poll(props) {
 
   const { questionId, question, author, authedUser } = props;
 

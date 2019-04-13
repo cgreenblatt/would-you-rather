@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PollContainer from './PollContainer';
 
-const QuestionSummary = (props) =>  {
+function QuestionSummary(props) {
 
   const { questionId, question, author } = props;
 

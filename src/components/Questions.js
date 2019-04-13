@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { NavLink, Redirect } from 'react-router-dom';
 import QuestionSummary from './QuestionSummary';
 
-const Questions = (props) => {
+function Questions(props) {
 
   const { authedUser, questions, users, status } = props;
 

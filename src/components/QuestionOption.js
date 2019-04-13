@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const QuestionOption = (props) => {
+function QuestionOption(props) {
 
   const { question, option, authedUserId } = props;
   const thisOptionVotes = question[option].votes.length;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const UserScore = (props) => {
+function UserScore(props) {
 
   const { user, rank } = props;
 

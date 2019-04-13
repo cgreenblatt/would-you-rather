@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NavbarItem from './NavbarItem';
 
-const Navbar = (props) => {
+function Navbar(props) {
 
   return (
     <nav className='navbar'>

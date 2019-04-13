@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-const PollContainer = (props) =>  {
+function PollContainer(props) {
 
   const { children, headerText, author } = props;
 
