@@ -7,17 +7,6 @@ import UserScore from './UserScore';
 function LeaderBoard(props) {
   const { users, authedUser } = props;
 
-  if (!authedUser) {
-    return (
-      <Redirect
-        to={{
-          pathname: '/',
-          state: { referrer: '/leaderboard' },
-        }}
-      />
-    );
-  }
-
 //  sort all users by score
   const sortedUsers = [...users].sort((u1, u2) => u2.score - u1.score);
   // assign rank
