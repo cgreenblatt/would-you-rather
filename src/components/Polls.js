@@ -50,7 +50,10 @@ function Polls(props) {
 
 function mapStateToProps({ authedUser, questions, users }, props) {
   // make unanswered questions the default if the status is not specified
-  const status = props.match.params.status? props.match.params.status : 'unanswered'
+  const status = (props.match && props.match.params.status && props.match.params.status === 'answered')
+    ? 'answered'
+    : 'unanswered';
+
   return {
     status,
     questions,
