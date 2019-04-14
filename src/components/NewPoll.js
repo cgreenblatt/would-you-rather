@@ -9,6 +9,7 @@ class NewPoll extends Component {
   state = {
     optionOneText: '',
     optionTwoText: '',
+    toPolls: false,
   };
 
   handleChange = (e, option) => {
@@ -19,23 +20,16 @@ class NewPoll extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { optionOneText, optionTwoText } = this.state;
-    const { dispatch, history } = this.props;
-    dispatch(handleAddQuestion(optionOneText, optionTwoText))
-      .then(question => {
-        history.push(`/polls/unanswered`);
-      });
+    const { history } = this.props;
+    this.props.addQuestion(optionOneText, optionTwoText)
+     .then(question => this.setState(() => ({ toPolls: true })));
   };
 
   render() {
 
-    const { authedUser } = this.props;
-    if (!authedUser) {
-       return <Redirect
-        to={{
-          pathname: "/",
-          state: { referrer: `/add`}
-        }}
-      />
+
+    if (this.state.toPolls) {
+      return <Redirect to='/polls/answered' />
     }
 
     return (
@@ -71,8 +65,18 @@ class NewPoll extends Component {
   }
 }
 
-function mapStateToProps({authedUser}) {
-  return { authedUser };
+function mapStateToProps({authedUser}, props) {
+  return {
+    authedUser,
+   };
 }
 
-export default connect(mapStateToProps)(NewPoll);
+function mapDispatchToProps(dispatch) {
+  return ({
+    addQuestion: function(optionOneText, optionTwoText) {
+      return dispatch(handleAddQuestion(optionOneText, optionTwoText));
+    }
+  })
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewPoll);
