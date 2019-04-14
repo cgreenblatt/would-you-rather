@@ -19,11 +19,12 @@ class SignIn extends Component {
   }
 
   signIn = () => {
-    if (this.state.activeUserId)
-      this.props.dispatch(setAuthedUser(this.state.activeUserId));
+    const activeUserId = this.state.activeUserId;
+    if (activeUserId)
+      this.props.setAuthedUser(activeUserId)
   }
 
-  toggleListbox = () =>  {
+  toggleListbox = () => {
     this.setState((state) => {
       return { listboxCollapsed: !state.listboxCollapsed };
     })
@@ -69,9 +70,15 @@ class SignIn extends Component {
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    setAuthedUser : (userId) => {dispatch(setAuthedUser(userId))}
+  }
+}
+
 function mapStateToProps({ authedUser }) {
     return { authedUser };
 }
 
 
-export default connect(mapStateToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
