@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  BrowserRouter as Router, Route, Switch, Redirect
+  BrowserRouter as Router, Route, Switch, Redirect, withRouter
 } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -12,8 +12,7 @@ import Polls from './Polls';
 import Poll from './Poll';
 import LeaderBoard from './LeaderBoard';
 import NewPoll from './NewPoll';
-import AuthedUser from './AuthedUser';
-import PageNotFound from './PageNotFound'
+import AuthedUserHeader from './AuthedUserHeader';
 import '../App.css';
 
 library.add(fas);
@@ -51,13 +50,12 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          {authedUser && authedUser.sessionActive && <Route path="/" component={AuthedUser} />}
+          {authedUser && authedUser.sessionActive && <Route path="/" component={AuthedUserHeader} />}
           <Switch>
             <Route path="/" exact component={SignIn} />
             <Route path="/polls/:status" component={Polls} />
-            <Route path="/polls" exact component={Polls} />
-            <Route path="/add" exact render={this.renderNewPoll} />
-            <Route path="/leaderboard" exact render={this.renderLeaderBoard} />
+            <Route path="/add" render={this.renderNewPoll} />
+            <Route path="/leaderboard" render={this.renderLeaderBoard} />
             <Route path="/poll/:questionId" exact component={Poll} />
             <Route component={Polls} />
           </Switch>
