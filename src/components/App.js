@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import {
+  BrowserRouter as Router, Route, Switch, Redirect
+} from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 import { handleInitialData } from '../actions/shared';
 import SignIn from './SignIn';
 import Polls from './Polls';
@@ -17,24 +20,30 @@ library.add(fas);
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+    this.renderLeaderBoard = this.renderLeaderBoard.bind(this);
+    this.renderNewPoll = this.renderNewPoll.bind(this);
+  }
+
   componentDidMount() {
     this.props.handleInitialData();
   }
 
-  renderLeaderBoard = () => {
+  renderLeaderBoard() {
     const { authedUser } = this.props;
-
-    return authedUser
-      ? <LeaderBoard />
-      : <Redirect to={{pathname: '/', state: { referrer: '/leaderboard' },}} />;
+    if (authedUser) {
+      return authedUser.sessionActive ? <LeaderBoard /> : <Redirect to="/" />;
+    }
+    return <Redirect to={{ pathname: '/', state: { referrer: '/leaderboard' } }} />;
   }
 
-  renderNewPoll = ()  => {
+  renderNewPoll() {
     const { authedUser } = this.props;
-
-    return authedUser
-      ? <NewPoll />
-      : <Redirect to={{pathname: '/', state: { referrer: '/add' },}} />;
+    if (authedUser) {
+      return authedUser.sessionActive ? <NewPoll /> : <Redirect to="/" />;
+    }
+    return <Redirect to={{ pathname: '/', state: { referrer: '/add' } }} />;
   }
 
   render() {
@@ -42,7 +51,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          {authedUser && <AuthedUser />}
+          {authedUser && authedUser.sessionActive && <Route path="/" component={AuthedUser} />}
           <Switch>
             <Route path="/" exact component={SignIn} />
             <Route path="/polls/:status" component={Polls} />
@@ -50,7 +59,7 @@ class App extends Component {
             <Route path="/add" exact render={this.renderNewPoll} />
             <Route path="/leaderboard" exact render={this.renderLeaderBoard} />
             <Route path="/poll/:questionId" exact component={Poll} />
-            <Route component={PageNotFound} />
+            <Route component={Polls} />
           </Switch>
         </div>
       </Router>
@@ -58,13 +67,21 @@ class App extends Component {
   }
 }
 
+App.propTypes = {
+  authedUser: PropTypes.object,
+  handleInitialData: PropTypes.func.isRequired,
+};
+
+App.defaultProps = {
+  authedUser: null,
+};
 
 function mapStateToProps({ authedUser }) {
   return { authedUser };
 }
 
 function mapDispatchToProps(dispatch) {
-  return { handleInitialData : () => dispatch(handleInitialData()) };
+  return { handleInitialData: () => dispatch(handleInitialData()) };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

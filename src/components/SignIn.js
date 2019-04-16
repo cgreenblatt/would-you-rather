@@ -32,16 +32,20 @@ class SignIn extends Component {
 
   render() {
 
-    const { authedUser } = this.props;
 
-    if (authedUser) {
-        if (this.props.location.state) {
+    const { authedUser } = this.props;
+    if (authedUser && authedUser.sessionActive) {
+        if (this.props.location.state && this.props.location.state.referrer) {
           // redirect to referrer
           return <Redirect to={this.props.location.state.referrer} />
         } else {
           // not referred, redirect to home
           return <Redirect to='/polls/unanswered' />
         }
+    }
+
+    if (authedUser && !authedUser.sessionActive) {
+      this.props.setAuthedUser(null);
     }
 
     return (
@@ -72,7 +76,11 @@ class SignIn extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    setAuthedUser : (userId) => {dispatch(setAuthedUser(userId))}
+    setAuthedUser : (userId) => {
+      userId
+      ? dispatch(setAuthedUser({id: userId, sessionActive: true}))
+      : dispatch(setAuthedUser(null))
+    }
   }
 }
 

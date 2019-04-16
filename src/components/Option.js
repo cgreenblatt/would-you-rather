@@ -38,7 +38,7 @@ function Option(props) {
 }
 
 function mapStateToProps({ authedUser }) {
-  return { authedUserId: authedUser };
+  return { authedUserId: authedUser.id };
 }
 
 export default connect(mapStateToProps)(Option);

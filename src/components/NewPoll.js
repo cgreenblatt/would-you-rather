@@ -29,7 +29,7 @@ class NewPoll extends Component {
 
 
     if (this.state.toPolls) {
-      return <Redirect to='/polls/answered' />
+      return <Redirect to='/polls/unanswered' />
     }
 
     return (

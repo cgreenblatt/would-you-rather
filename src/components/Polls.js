@@ -7,17 +7,24 @@ function Polls(props) {
 
   const { authedUser, questions, users, status } = props;
 
+  if (authedUser && !authedUser.sessionActive) {
+    return <Redirect to="/" />
+  }
+
   if (!authedUser) {
-     return <Redirect
-      to={{
+    return (
+      <Redirect to={{
         pathname: "/",
-        state: { referrer: `/polls/${status}`}
+        state: {
+          referrer: `/polls/${status}`
+        }
       }}
-    />
+      />
+);
   }
 
   const allIds = Object.keys(questions);
-  const answeredQuestionIds = Object.keys(users[authedUser].answers);
+  const answeredQuestionIds = Object.keys(users[authedUser.id].answers);
   const unansweredQuestionIds = allIds.filter(id => !answeredQuestionIds.includes(id));
   const questionIds = status === 'unanswered' ? unansweredQuestionIds : answeredQuestionIds;
 

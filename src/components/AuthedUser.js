@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setAuthedUser } from '../actions/authedUser';
+import { Redirect, withRouter } from 'react-router-dom';
+import { setAuthedUser, deactivateAuthedUser } from '../actions/authedUser';
 import Navbar from './Navbar';
 
 class AuthedUser extends Component {
 
+
   handleClick = (e) => {
+    const { logoutUser, authedUser } = this.props;
     e.preventDefault();
-    this.props.logOutUser();
+    logoutUser(authedUser);
   };
 
   render() {
+
     const { authedUser } = this.props;
 
     return (
@@ -28,12 +32,12 @@ class AuthedUser extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, users }) {
-  return { authedUser: users[authedUser] };
+function mapStateToProps({ authedUser, users }, props) {
+  return { authedUser: users[authedUser.id] };
 }
 
 function mapDispatchToProps(dispatch) {
-  return { logOutUser: () => {dispatch(setAuthedUser(null));} }
+  return { logoutUser: (authedUser) => {dispatch(deactivateAuthedUser(authedUser));} }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthedUser);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AuthedUser));

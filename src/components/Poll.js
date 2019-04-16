@@ -8,15 +8,19 @@ import PollContainer from './PollContainer';
 
 function Poll(props) {
 
-  const { questionId, question, author, authedUser } = props;
+  const { questionId, question, author, authedUser, user } = props;
+
 
   if (!authedUser) {
-     return <Redirect
-      to={{
+     return <Redirect to={{
         pathname: "/",
         state: { referrer: `/poll/${questionId}`}
       }}
     />
+  }
+
+  if (authedUser && !authedUser.sessionActive) {
+    return <Redirect to="/" />
   }
 
   if (!question) {
@@ -29,7 +33,7 @@ function Poll(props) {
     );
   }
 
-  const answered = Object.keys(authedUser.answers).includes(questionId);
+  const answered = Object.keys(user.answers).includes(questionId);
 
   if (answered) return (
     <PollContainer
@@ -61,7 +65,8 @@ function mapStateToProps({ questions, users, authedUser }, props ) {
     questionId,
     question: question ? question : null,
     author: question ? users[question.author] : null,
-    authedUser: users[authedUser]
+    authedUser,
+    user: authedUser ? users[authedUser.id] : null
   };
 }
 

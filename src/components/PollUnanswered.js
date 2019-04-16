@@ -9,9 +9,9 @@ class PollUnanswered extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const { dispatch, questionId, authedUser } = this.props
+    const { handleSaveVote, questionId, authedUser } = this.props
     if (this.state.selectedOption) {
-      dispatch(handleSaveVote(questionId, this.state.selectedOption, authedUser));
+      handleSaveVote(questionId, this.state.selectedOption, authedUser.id);
     }
   }
 
@@ -48,6 +48,12 @@ class PollUnanswered extends Component {
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    handleSaveVote: (questionId, selectedOption, authedUser) => {dispatch(handleSaveVote(questionId, selectedOption, authedUser));}
+  }
+}
+
 function mapStateToProps({ questions, users, authedUser }, { questionId } ) {
 
   const question = questions[questionId];
@@ -58,4 +64,4 @@ function mapStateToProps({ questions, users, authedUser }, { questionId } ) {
   };
 }
 
-export default connect(mapStateToProps)(PollUnanswered);
+export default connect(mapStateToProps, mapDispatchToProps)(PollUnanswered);
