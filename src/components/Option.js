@@ -31,18 +31,13 @@ function Option(props) {
         </div>
       )}
       <h3 className="font-medium">
-        Would you rather
-        {question[option].text}
-        ?
+        {`Would you rather ${question[option].text}?`}
       </h3>
       <div className="tally-bar-background">
         <div style={tallyBarStyle} />
       </div>
       <div className="tally-text">
-        {thisOptionVotes}
-         out of
-        {totalVotes}
-         votes
+        {`${thisOptionVotes} out of ${totalVotes} votes`}
       </div>
     </div>
   );
