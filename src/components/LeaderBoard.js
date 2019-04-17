@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import UserScore from './UserScore';
 
-
 function LeaderBoard(props) {
-  const { users, authedUser } = props;
+  const { users } = props;
 
 //  sort all users by score
   const sortedUsers = [...users].sort((u1, u2) => u2.score - u1.score);
@@ -27,10 +26,12 @@ function LeaderBoard(props) {
   );
 }
 
-function mapStateToProps({ authedUser, questions, users }) {
+LeaderBoard.propTypes = {
+  users: PropTypes.array.isRequired,
+};
+
+function mapStateToProps({ users }) {
   return {
-    authedUser,
-    questions,
     users: Object.values(users).map(user => (
       {
         id: user.id,

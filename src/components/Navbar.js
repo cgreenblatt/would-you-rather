@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import NavbarItem from './NavbarItem';
 
-function Navbar(props) {
-
+function Navbar() {
   return (
-    <nav className='navbar'>
+    <nav className="navbar">
       <ul>
-        <NavbarItem to='/polls/unanswered' content=' Home ' partial='/polls/' />
-        <NavbarItem to='/add' content='New Question' partial={false} />
-        <NavbarItem to='/leaderboard' content='Leader Board' partial={false} />
+        <NavbarItem to="/polls/unanswered" content=" Home " partial="/polls/" />
+        <NavbarItem to="/add" content="New Question" />
+        <NavbarItem to="/leaderboard" content="Leader Board" />
       </ul>
     </nav>
   );

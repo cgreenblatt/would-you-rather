@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Listbox from './Listbox';
 import { setAuthedUser } from '../actions/authedUser';
 import reduxLogo from '../icons/reduxLogo.svg';
@@ -9,64 +10,66 @@ import reactLogo from '../icons/reactLogo.svg';
 
 class SignIn extends Component {
 
-  state = {
-    activeUserId: undefined,
-    listboxCollapsed: true,
-  };
-
-  setActiveUserId = (id) => {
-      this.setState({ activeUserId: id,});
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeUserId: undefined,
+      listboxCollapsed: true,
+    };
+    this.setActiveUserId = this.setActiveUserId.bind(this);
+    this.toggleListbox = this.toggleListbox.bind(this);
+    this.signIn = this.signIn.bind(this);
   }
 
-  signIn = () => {
-    const activeUserId = this.state.activeUserId;
-    if (activeUserId)
-      this.props.setAuthedUser(activeUserId)
+  setActiveUserId(id) {
+    this.setState({ activeUserId: id });
   }
 
-  toggleListbox = () => {
-    this.setState((state) => {
-      return { listboxCollapsed: !state.listboxCollapsed };
-    })
+  signIn() {
+    const { activeUserId } = this.state;
+    const { signin } = this.props;
+    if (activeUserId) signin(activeUserId);
+  }
+
+  toggleListbox() {
+    this.setState(state => ({ listboxCollapsed: !state.listboxCollapsed }));
   }
 
   render() {
-
-
-    const { authedUser } = this.props;
+    const { authedUser, location, signin } = this.props;
+    const { activeUserId, listboxCollapsed } = this.state;
     if (authedUser && authedUser.sessionActive) {
-        if (this.props.location.state && this.props.location.state.referrer) {
-          // redirect to referrer
-          return <Redirect to={this.props.location.state.referrer} />
-        } else {
-          // not referred, redirect to home
-          return <Redirect to='/polls/unanswered' />
-        }
+      const { state } = location;
+      const referrer = state ? state.referrer : null;
+      if (referrer) {
+        return <Redirect to={referrer} />;
+      }
+      return <Redirect to="/polls/unanswered" />;
     }
 
-    if (authedUser && !authedUser.sessionActive) {
-      this.props.setAuthedUser(null);
-    }
+    /*if (authedUser && !authedUser.sessionActive) {
+      signin(null);
+    }*/
 
     return (
-      <div className='gray-border min-max-width justify-self-center'>
-        <div className='grid-header'>
-          <h2 className='align-center'>Welcome to the Would You Rather App!</h2>
-          <h4 className='font-medium align-center gray-dark'>Please sign in to continue</h4>
+      <div className="gray-border min-max-width justify-self-center">
+        <div className="grid-header">
+          <h2 className="align-center">Welcome to the Would You Rather App!</h2>
+          <h4 className="font-medium align-center gray-dark">Please sign in to continue</h4>
         </div>
-        <div className='icons'>
-          <img className='icon icon-react' src={reactLogo} alt='react logo'/>
-          <span className='plus-sign gray'> +  </span>
-          <img className='icon icon-redux' src={reduxLogo} alt='redux logo'/>
+        <div className="icons">
+          <img className="icon icon-react" src={reactLogo} alt="react logo" />
+          <span className="plus-sign gray"> +  </span>
+          <img className="icon icon-redux" src={reduxLogo} alt="redux logo" />
         </div>
-        <h2 className='align-center teal'>Sign In</h2>
+        <h2 className="align-center teal">Sign In</h2>
         <Listbox
-          activeUserId = {this.state.activeUserId}
+          activeUserId={activeUserId}
           setActiveUserId = {this.setActiveUserId}
-          listboxCollapsed = { this.state.listboxCollapsed }
-          toggleListbox = { this.toggleListbox }
+          listboxCollapsed={listboxCollapsed}
+          toggleListbox={this.toggleListbox}
         />
-        <div onClick={this.signIn} className={'sign-in-btn'}>
+        <div onClick={this.signIn} className={"sign-in-btn"}>
           Sign In
         </div>
       </div>
@@ -74,19 +77,26 @@ class SignIn extends Component {
   }
 }
 
+SignIn.propTypes = {
+  authedUser: PropTypes.object,
+  signin: PropTypes.func,
+  location: PropTypes.object,
+};
+
 function mapDispatchToProps(dispatch) {
   return {
-    setAuthedUser : (userId) => {
-      userId
-      ? dispatch(setAuthedUser({id: userId, sessionActive: true}))
-      : dispatch(setAuthedUser(null))
-    }
-  }
+    signin: (userId) => {
+      if (userId) {
+        dispatch(setAuthedUser(userId, true));
+      } else {
+        dispatch(setAuthedUser(null));
+      }
+    },
+  };
 }
 
 function mapStateToProps({ authedUser }) {
-    return { authedUser };
+  return { authedUser };
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

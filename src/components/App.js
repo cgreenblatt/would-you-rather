@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-  BrowserRouter as Router, Route, Switch, Redirect, withRouter
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
@@ -26,7 +24,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.props.handleInitialData();
+    const { loadData } = this.props;
+    loadData();
   }
 
   renderLeaderBoard() {
@@ -67,19 +66,16 @@ class App extends Component {
 
 App.propTypes = {
   authedUser: PropTypes.object,
-  handleInitialData: PropTypes.func.isRequired,
+  loadData: PropTypes.func.isRequired,
 };
 
-App.defaultProps = {
-  authedUser: null,
-};
 
 function mapStateToProps({ authedUser }) {
   return { authedUser };
 }
 
 function mapDispatchToProps(dispatch) {
-  return { handleInitialData: () => dispatch(handleInitialData()) };
+  return { loadData: () => dispatch(handleInitialData()) };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
