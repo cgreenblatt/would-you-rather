@@ -11,7 +11,6 @@ function Poll(props) {
   const {
     questionId, question, author, authedUser, user,
   } = props;
-
   if (!authedUser) {
     return (
       <Redirect to={{ pathname: '/', state: { referrer: `/poll/${questionId}` } }} />
