@@ -36,7 +36,7 @@ class SignIn extends Component {
   }
 
   render() {
-    const { authedUser, location, signin } = this.props;
+    const { authedUser, location } = this.props;
     const { activeUserId, listboxCollapsed } = this.state;
     if (authedUser && authedUser.sessionActive) {
       const { state } = location;
@@ -46,10 +46,6 @@ class SignIn extends Component {
       }
       return <Redirect to="/polls/unanswered" />;
     }
-
-    /*if (authedUser && !authedUser.sessionActive) {
-      signin(null);
-    }*/
 
     return (
       <div className="gray-border min-max-width justify-self-center">
@@ -79,19 +75,12 @@ class SignIn extends Component {
 
 SignIn.propTypes = {
   authedUser: PropTypes.object,
-  signin: PropTypes.func,
   location: PropTypes.object,
 };
 
 function mapDispatchToProps(dispatch) {
   return {
-    signin: (userId) => {
-      if (userId) {
-        dispatch(setAuthedUser(userId, true));
-      } else {
-        dispatch(setAuthedUser(null));
-      }
-    },
+    signin: userId => dispatch(setAuthedUser(userId, true)),
   };
 }
 
