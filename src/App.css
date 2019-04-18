@@ -297,13 +297,6 @@
   border-color: teal;
 }
 
-.checkmark-container {
-  width: 100%;
-  position: absolute;
-  top: -30px;
-  left: 0;
-}
-
 .checkmark {
   position: absolute;
   right: 0;

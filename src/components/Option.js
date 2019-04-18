@@ -19,6 +19,8 @@ function Option(props) {
     display: 'inline-block',
     borderTopLeftRadius: '5px',
     borderBottomLeftRadius: '5px',
+    borderTopRightRadius: `${totalVotes === thisOptionVotes ? '5px' : '0'}`,
+    borderBottomRightRadius: `${totalVotes === thisOptionVotes ? '5px' : '0'}`
   };
 
   return (
