@@ -16,7 +16,7 @@ export function addQuestionToQuestions(question) {
   };
 }
 
-export function toggleVoteQuestion({authedUser, qid, answer, addVote}) {
+export function toggleVoteQuestion(authedUser, qid, answer, addVote) {
   return {
     type: TOGGLE_VOTE_QUESTION,
     addVote,

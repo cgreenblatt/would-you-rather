@@ -30,25 +30,25 @@ export function handleSaveVote(qid, answer, authedUser) {
 
   return (dispatch) => {
     // request to update question slice of state
-    dispatch(toggleVoteQuestion({
-      authedUser, qid, answer, addVote: true,
-    }));
+    dispatch(toggleVoteQuestion(
+      authedUser, qid, answer, true,
+    ));
     // request to update user slice of state
-    dispatch(toggleVoteUser({
-      authedUser, qid, answer, addVote: true,
-    }));
+    dispatch(toggleVoteUser(
+      authedUser, qid, answer, true,
+    ));
     // update server data
     return saveQuestionAnswer({ authedUser, qid, answer })
       .catch((e) => {
         console.warn('Error in handleSaveVote: ', e);
         // request to undo updated question slice of state
-        dispatch(toggleVoteQuestion({
-          authedUser, qid, answer, addVote: false,
-        }));
+        dispatch(toggleVoteQuestion(
+          authedUser, qid, answer, false,
+        ));
         // request to undo updated user slice of state
-        dispatch(toggleVoteUser({
-          authedUser, qid, answer, addVote: false,
-        }));
+        dispatch(toggleVoteUser(
+          authedUser, qid, answer, false,
+        ));
         alert('There was an error recording your vote. Try again.')
       });
   };
