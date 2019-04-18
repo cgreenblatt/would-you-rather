@@ -202,6 +202,11 @@
   justify-self: center;
 }
 
+.filter-question:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .active-filter {
   color: teal;
   background-color: white;
