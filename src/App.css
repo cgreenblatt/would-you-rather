@@ -305,8 +305,9 @@
 }
 
 .checkmark {
-  display: inline-block;
-  float: right;
+  position: absolute;
+  right: 0;
+  top: -30px;
   height: 40px;
   width: 40px;
   text-align: center;

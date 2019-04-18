@@ -24,11 +24,9 @@ function Option(props) {
   return (
     <div className={classList}>
       {yesVote && (
-        <div className="checkmark-container">
           <div className="checkmark">
             <FontAwesomeIcon icon={['fas', 'check']} />
           </div>
-        </div>
       )}
       <h3 className="font-medium">
         {`Would you rather ${question[option].text}?`}
